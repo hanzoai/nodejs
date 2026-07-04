@@ -47,6 +47,10 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
+          # No attestation/SBOM manifest — its extra blob push 403s on a new
+          # GHCR package's first publish (matches the canonical shared workflow).
+          provenance: false
+          sbom: false
           tags: |
             ghcr.io/hanzoai/nodejs:${{ steps.tags.outputs.ver }}
             ghcr.io/hanzoai/nodejs:${{ steps.tags.outputs.major }}
