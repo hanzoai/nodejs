@@ -1,0 +1,10 @@
+# The canonical Node base image. There is no source to test here — the
+# Dockerfile IS the gate: it round-trips an in-memory DB through node:sqlite AND
+# compiles better-sqlite3 from source against the baked-in toolchain, and the
+# image fails to build if either stops working. No `test:` block, because a
+# second command run outside the image would be testing something else.
+images:
+  - name: nodejs
+    context: .
+    dockerfile: Dockerfile
+    repo: ghcr.io/hanzoai/nodejs
